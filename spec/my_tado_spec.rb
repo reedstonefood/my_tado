@@ -5,7 +5,7 @@ RSpec.describe MyTado do
     expect(MyTado::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "when new is called, returns a Client" do
+    expect(MyTado.new("test")).to be_a_kind_of(MyTado::Client)
   end
 end

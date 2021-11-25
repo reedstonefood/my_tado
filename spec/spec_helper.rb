@@ -13,3 +13,16 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+# This is not actually a secret
+def test_client_secret
+  "wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc"
+end
+
+def test_username
+  nil
+end
+
+def test_password
+  nil
+end

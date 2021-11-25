@@ -3,10 +3,16 @@ AllCops:
   TargetRubyVersion: 3.0
 
 Layout/EndOfLine:
-   Enabled: False
+  Enabled: False
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
 
 Layout/LineLength:
   Max: 120
+
+Style/BlockDelimiters:
+  IgnoredMethods: ["subject"]
 
 Style/StringLiterals:
   Enabled: false
@@ -14,3 +20,9 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
