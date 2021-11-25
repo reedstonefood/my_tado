@@ -11,6 +11,9 @@ Layout/FirstHashElementIndentation:
 Layout/LineLength:
   Max: 120
 
+Lint/ScriptPermission:
+  Enabled: false
+
 Style/BlockDelimiters:
   IgnoredMethods: ["subject"]
 

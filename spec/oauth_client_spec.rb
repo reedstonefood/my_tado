@@ -13,7 +13,7 @@ RSpec.describe MyTado::OAuthClient do
   # to put your actual refresh token in as test_refresh_token.
   # Therefore this test is skipped by default, but developers can check
   # this code by putting a real refresh token in above.
-  it "gives expected results when using username & password" do
+  skip "gives expected results when using username & password" do
     response = subject.using_username_and_password
     expect(response.code).to eq(200)
     expect(response["token_type"]).to eq("bearer")
