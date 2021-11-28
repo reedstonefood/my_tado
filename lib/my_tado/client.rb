@@ -5,6 +5,8 @@ require 'httparty'
 module MyTado
   # The main object from where everything else happens
   class Client
+    IMPLEMENTED_ENDPOINTS = %i[me].freeze
+
     def initialize(credentials_source)
       @credentials_source = credentials_source
     end
@@ -21,6 +23,13 @@ module MyTado
       @home_id ||= credentials.home_id
     end
 
+    IMPLEMENTED_ENDPOINTS.each do |endpoint|
+      define_method endpoint.to_s do |options = {}|
+        klass = Object.const_get("MyTado::Request::#{camelize(endpoint)}")
+        klass.new(access_token, options).call
+      end
+    end
+
     private
 
     def oauth_client
@@ -31,6 +40,10 @@ module MyTado
         username: credentials.username,
         password: credentials.password,
       )
+    end
+
+    def camelize(string)
+      string.to_s.split('_').collect(&:capitalize).join
     end
   end
 end
