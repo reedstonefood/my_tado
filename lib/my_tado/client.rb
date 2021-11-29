@@ -5,7 +5,7 @@ require 'httparty'
 module MyTado
   # The main object from where everything else happens
   class Client
-    IMPLEMENTED_ENDPOINTS = %i[me].freeze
+    IMPLEMENTED_ENDPOINTS = %i[me home presence weather zones zone_state].freeze
 
     def initialize(credentials_source)
       @credentials_source = credentials_source
@@ -20,12 +20,13 @@ module MyTado
     end
 
     def home_id
-      @home_id ||= credentials.home_id
+      @home_id ||= credentials.home_id || me["homeId"]
     end
 
     IMPLEMENTED_ENDPOINTS.each do |endpoint|
       define_method endpoint.to_s do |options = {}|
         klass = Object.const_get("MyTado::Request::#{camelize(endpoint)}")
+        options.merge!(home_id: home_id) if klass.requires_home_id_param?
         klass.new(access_token, options).call
       end
     end

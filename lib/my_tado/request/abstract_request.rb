@@ -8,6 +8,11 @@ module MyTado
     class AbstractRequest
       include HTTParty
       base_uri "https://my.tado.com/api"
+      attr_reader :options
+
+      def self.requires_home_id_param?
+        true
+      end
 
       def initialize(access_token, options)
         @access_token = access_token

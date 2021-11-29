@@ -25,6 +25,22 @@ tado = MyTado.new(credentials)
 tado = MyTado.new("secrets.yml")
 ```
 
+Once initialized you can call other endpoints like so:
+
+```ruby
+tado.home # no extra parameters needed
+tado.zone_state({zone_id: 0}) # an example where a parameter is needed
+```
+
+## Endpoints
+
+- `me` - your account information - name, email etc.
+- `home` - information about your home, address, contact details
+- `presence` - returns wether tado thinks your presence is HOME or AWAY
+- `weather` - the external weather for your home
+- `zones` - a lot of information about your installation
+- `zone_state` (requires `zone_id`) - information about your hot water or heating
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/reedstonefood/my_tado.
