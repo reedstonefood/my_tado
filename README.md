@@ -41,6 +41,17 @@ tado.zone_state({zone_id: 0}) # an example where a parameter is needed
 - `zones` - a lot of information about your installation
 - `zone_state` (requires `zone_id`) - information about your hot water or heating
 
+## Responses
+
+The response object that MyTado returns from the endpoints has the following methods:
+
+- `raw_response` if you want the HTTParty response class
+- `["thing"]` for looking at the response
+- `ok?` - a convenience method for `raw_response.ok?` which lets you know if the response was an HTTP 200 or not.
+
+Differences between `raw_response["thing"]` and `["thing"]` are:
+- `["thing"]` will have automatically converted dates into Ruby Date objects to make it easier to use.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/reedstonefood/my_tado.

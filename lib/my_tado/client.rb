@@ -27,7 +27,8 @@ module MyTado
       define_method endpoint.to_s do |options = {}|
         klass = Object.const_get("MyTado::Request::#{camelize(endpoint)}")
         options.merge!(home_id: home_id) if klass.requires_home_id_param?
-        klass.new(access_token, options).call
+        request = klass.new(access_token, options)
+        Response::AbstractResponse.new(request.call)
       end
     end
 

@@ -11,6 +11,7 @@ require_relative "my_tado/request/presence"
 require_relative "my_tado/request/weather"
 require_relative "my_tado/request/zones"
 require_relative "my_tado/request/zone_state"
+require_relative "my_tado/response/abstract_response"
 
 # Caling `new` creates a Client
 module MyTado
