@@ -36,7 +36,7 @@ tado.zone_state({zone_id: 0}) # an example where a parameter is needed
 
 - `me` - your account information - name, email etc.
 - `home` - information about your home, address, contact details
-- `presence` - returns wether tado thinks your presence is HOME or AWAY
+- `presence` - returns whether tado thinks your presence is HOME or AWAY
 - `weather` - the external weather for your home
 - `zones` - a lot of information about your installation
 - `zone_state` (requires `zone_id`) - information about your hot water or heating
@@ -50,17 +50,35 @@ The response object that MyTado returns from the endpoints has the following met
 - `ok?` - a convenience method for `raw_response.ok?` which lets you know if the response was an HTTP 200 or not.
 
 Differences between `raw_response["thing"]` and `["thing"]` are:
-- `["thing"]` will have automatically converted dates into Ruby Date objects to make it easier to use.
+- ~~`["thing"]` will have automatically converted dates into Ruby Date objects to make it easier to use.~~ doesn't work yet
 
-## Contributing
+## Example usage
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/reedstonefood/my_tado.
+```ruby
+credentials = { username: "foo@example.com", password: "terrible_password" }
+tado = MyTado.new(credentials)
+
+# Get the state of every zone
+zones_state = tado.zones.map { |zone| tado.zone_state(zone["id"]) }
+
+# Get the temperature in every zone, in celsius
+acutal_temperatures = zone_states.map do |zone_state|
+  zone_state.dig('sensorDataPoints', 'insideTemperature', 'celsius')
+end
+```
 
 ## Running tests
 
-There is no known test environment, so if you want to run tests you have to use your own Tado username and password. Don't worry, the tests only read data, they do not make any changes to your tado setup.
+~~There is no known test environment, so if you want to run tests you have to use your own Tado username and password. Don't worry, the tests only read data, they do not make any changes to your tado setup.~~
 
-Put your username & password into spec/spec_helper, in the `test_username` and `test_password` methods. Then run `rspec spec`.
+~~Put your username & password into spec/spec_helper, in the `test_username` and `test_password` methods. Then run `rspec spec`.~~
+None of the tests that have been written test the actual API, they only test internal aspects of the client.
+
+## Future development
+
+This gem does what I want to do for my own purposes. I may add to it in the future, or I may not.
+
+If you want to expand the functionality, feel free to fork it or raise a PR.
 
 ## License
 
