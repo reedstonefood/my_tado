@@ -5,7 +5,7 @@ require 'httparty'
 module MyTado
   # The main object from where everything else happens
   class Client
-    IMPLEMENTED_ENDPOINTS = %i[me home presence weather zones zone_state].freeze
+    IMPLEMENTED_ENDPOINTS = %i[me day_report home presence weather zones zone_state].freeze
 
     def initialize(credentials_source)
       @credentials_source = credentials_source

@@ -34,6 +34,7 @@ tado.zone_state({zone_id: 0}) # an example where a parameter is needed
 
 ## Endpoints
 
+- `day_report` - detailed data from a zone for a specific day
 - `me` - your account information - name, email etc.
 - `home` - information about your home, address, contact details
 - `presence` - returns whether tado thinks your presence is HOME or AWAY
