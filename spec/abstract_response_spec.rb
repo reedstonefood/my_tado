@@ -11,7 +11,7 @@ RSpec.describe MyTado::Response::AbstractResponse do
   end
 
   context "with simple input" do
-    subject { MyTado::Response::AbstractResponse.new(simple_input) }
+    subject { MyTado::Response::AbstractResponse.new(double(parsed_response: simple_input)) }
     it "converts text to date where appropriate" do
       expect(subject["date_as_text"]).to be_a(Date)
     end
@@ -36,7 +36,7 @@ RSpec.describe MyTado::Response::AbstractResponse do
   end
 
   context "with nested input" do
-    subject { MyTado::Response::AbstractResponse.new(nested_input) }
+    subject { MyTado::Response::AbstractResponse.new(double(parsed_response: nested_input)) }
     it "converts all dates" do
       expect(subject["date_as_text"]).to be_a(Date)
       expect(subject["complex_data"]["foo"]).to be_a(String)
