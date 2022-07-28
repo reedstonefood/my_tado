@@ -29,7 +29,11 @@ Once initialized you can call other endpoints like so:
 
 ```ruby
 tado.home # no extra parameters needed
-tado.zone_state({zone_id: 0}) # an example where a parameter is needed
+
+tado.zone_state(zone_id: 0) # an example where a parameter is needed
+
+# treat the output as an Array/Hash
+tado.zones.map { |zone| zone["name"] } # gives the names of all zones
 ```
 
 ## Endpoints
@@ -51,7 +55,8 @@ The response object that MyTado returns from the endpoints has the following met
 - `ok?` - a convenience method for `raw_response.ok?` which lets you know if the response was an HTTP 200 or not.
 
 Differences between `raw_response["thing"]` and `["thing"]` are:
-- ~~`["thing"]` will have automatically converted dates into Ruby Date objects to make it easier to use.~~ doesn't work yet
+- `["thing"]` will have automatically converted dates into Ruby Date objects to make it easier to use.
+- You can call regular Array/Hash methods on ["thing"] directly, eg `tado.zones.count`. Easy!
 
 ## Example usage
 
